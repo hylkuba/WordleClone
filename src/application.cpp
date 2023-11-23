@@ -15,5 +15,18 @@ int CApplication::run() {
 
     control.waitForEnter();
 
+    while(true) {
+        wordToFind = wordGen.getWord();
+        if(wordToFind == "") {
+            std::cout << "Trouble generating word right now. Fix needed!" << std::endl;
+            return 1;
+        }
+
+        guessedWord = control.guess();
+
+        std::cout << "Guessed Word: " << guessedWord << std::endl;
+        control.waitForEnter();
+    }
+
     return 0;
 }

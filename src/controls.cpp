@@ -31,3 +31,7 @@ void CControls::waitForEnter() {
         #endif
     }
 }
+
+std::string CControls::guess() {
+    
+}

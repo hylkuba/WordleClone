@@ -46,4 +46,10 @@ public:
 
 private:
     CControls control;
+    CUi ui;
+    CWordGen wordGen;
+    CWordCheck wordCheck;
+
+    std::string wordToFind;
+    std::string guessedWord;
 };

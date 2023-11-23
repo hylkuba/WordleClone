@@ -12,9 +12,27 @@
 class CWordGen {
 public:
     /**
-     * @brief 
+     * @brief Gets a random string from a file
      * 
-     * @return std::string 
+     * @return std::string Random word to guess
+     * @return Return an empty string to indicate an error
      */
-    std::string generateRandomString();
+    std::string getWord();
+
+private:
+    /**
+     * @brief Get the Random Number
+     * 
+     * @param max Max number in an interval (0, max)
+     * @return int random number
+     */
+    int getRandomNumber(int max);
+
+    /**
+     * @brief Get the Line Count of a file
+     * 
+     * @return int Number of lines
+     * @return Return -1 to indicate an error
+     */
+    int getLineCount();
 };

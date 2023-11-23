@@ -3,6 +3,10 @@
  * @date 22.11.2023
 */
 
+#pragma once
+
+#include <string>
+
 class CControls {
 public:
     /**
@@ -10,4 +14,11 @@ public:
      * 
      */
     void waitForEnter();
+
+    /**
+     * @brief User inputs a 5 letter word
+     * 
+     * @return std::string guessed word
+     */
+    std::string guess();
 };
