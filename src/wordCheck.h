@@ -45,4 +45,15 @@ public:
     void check(std::string wordToGuess, std::string guessedWord);
 private:
     CUi ui;
+
+    /**
+     * @brief Checks whether specific character exists in a wordToGuess
+     * 
+     * @param wordToGuess 
+     * @param c 
+     * @param ignoreIndex 
+     * @return true 
+     * @return false 
+     */
+    bool exists(std::string wordToGuess, char c, int ignoreIndex);
 };
