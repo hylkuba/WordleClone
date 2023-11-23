@@ -17,7 +17,7 @@ int CApplication::run() {
 
     // Loop of generating words
     while(true) {
-        wordToFind = wordGen.getWord();
+        wordToFind = wordManipulator.getWord();
         if(wordToFind == "") {
             std::cout << "Trouble generating word right now. Fix needed!" << std::endl;
             return 1;
@@ -40,9 +40,9 @@ int CApplication::run() {
                 break;
             }
 
-            if(!wordCheck.legal(guessedWord)) continue;
+            if(!wordManipulator.legal(guessedWord)) continue;
             // Print the guessed word with appropriate colors
-            wordCheck.check(wordToFind, guessedWord);
+            wordManipulator.check(wordToFind, guessedWord);
 
             ui.separationLine();
         }

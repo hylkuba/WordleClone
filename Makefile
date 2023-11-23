@@ -24,7 +24,7 @@ HEADERS = $(wildcard src/*.h)
 
 DIR_NAME = bin
 
-OBJS = $(DIR_NAME)/main.o $(DIR_NAME)/application.o  $(DIR_NAME)/controls.o $(DIR_NAME)/ui.o $(DIR_NAME)/wordCheck.o $(DIR_NAME)/wordGen.o
+OBJS = $(DIR_NAME)/main.o $(DIR_NAME)/application.o  $(DIR_NAME)/controls.o $(DIR_NAME)/ui.o $(DIR_NAME)/wordManipulator.o
 
 $(TARGET): $(OBJS)
 	$(LD) $(LDFLAGS) $(OBJS) -o $(TARGET)
@@ -56,11 +56,11 @@ all: doc run clean
 #-----------------------------------------------------------------------
 # Object files dependencies
 $(DIR_NAME)/main.o: src/main.cpp src/application.h src/ui.h \
- src/controls.h src/wordCheck.h src/wordGen.h
+ src/controls.h src/wordManipulator.h
 	$(CXX) $(CXXFLAGS) -c $< -o $@
 
 $(DIR_NAME)/application.o: src/application.cpp src/application.h src/ui.h \
- src/controls.h src/wordCheck.h src/wordGen.h
+ src/controls.h src/wordManipulator.h
 	$(CXX) $(CXXFLAGS) -c $< -o $@
 
 $(DIR_NAME)/controls.o: src/controls.cpp src/controls.h src/ui.h
@@ -69,8 +69,5 @@ $(DIR_NAME)/controls.o: src/controls.cpp src/controls.h src/ui.h
 $(DIR_NAME)/ui.o: src/ui.cpp src/ui.h
 	$(CXX) $(CXXFLAGS) -c $< -o $@
 
-$(DIR_NAME)/wordCheck.o: src/wordCheck.cpp src/wordCheck.h src/ui.h
-	$(CXX) $(CXXFLAGS) -c $< -o $@
-
-$(DIR_NAME)/wordGen.o: src/wordGen.cpp src/wordGen.h
+$(DIR_NAME)/wordManipulator.o: src/wordManipulator.cpp src/wordManipulator.h src/ui.h
 	$(CXX) $(CXXFLAGS) -c $< -o $@

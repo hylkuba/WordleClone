@@ -5,8 +5,7 @@
 
 #include "controls.h"
 #include "ui.h"
-#include "wordCheck.h"
-#include "wordGen.h"
+#include "wordManipulator.h"
 
 #include <string>
 
@@ -47,8 +46,7 @@ public:
 private:
     CControls control;
     CUi ui;
-    CWordGen wordGen;
-    CWordCheck wordCheck;
+    CWordManipulator wordManipulator;
 
     std::string wordToFind;
     std::string guessedWord;

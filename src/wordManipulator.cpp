@@ -3,12 +3,15 @@
  * @date 22.11.2023
 */
 
-#include "wordCheck.h"
+#include "wordManipulator.h"
 
 #include <iostream>
 #include <fstream>
+#include <random>
+#include <algorithm>
+#include <ctime>
 
-CWordCheck::CWordCheck() {
+CWordManipulator::CWordManipulator() {
     std::string word;
 
     std::ifstream file(WORDURL);
@@ -26,7 +29,7 @@ CWordCheck::CWordCheck() {
     std::cout << "size: " << wordList.size();
 }
 
-void CWordCheck::check(std::string wordToGuess, std::string guessedWord) {
+void CWordManipulator::check(std::string wordToGuess, std::string guessedWord) {
     for (size_t i = 0; i < guessedWord.size(); i++) {
         if(guessedWord[i] == wordToGuess[i]) {
             greenLetter(guessedWord[i]);
@@ -39,7 +42,17 @@ void CWordCheck::check(std::string wordToGuess, std::string guessedWord) {
     std::cout << std::endl;
 }
 
-bool CWordCheck::exists(std::string wordToGuess, char c, size_t ignoreIndex) {
+std::string CWordManipulator::getWord() {
+    std::srand(static_cast<unsigned int>(std::time(nullptr)));
+
+    std::size_t randomIndex = std::rand() % wordList.size();
+    auto it = std::begin(wordList);
+    std::advance(it, randomIndex);
+
+    return *it;
+}
+
+bool CWordManipulator::exists(std::string wordToGuess, char c, size_t ignoreIndex) {
     for (size_t i = 0; i < wordToGuess.size(); i++) {
         if(i != ignoreIndex && wordToGuess[i] == c) return true;
     }
@@ -47,21 +60,19 @@ bool CWordCheck::exists(std::string wordToGuess, char c, size_t ignoreIndex) {
     return false;
 }
 
-bool CWordCheck::legal(const std::string word) {
-    std::string line;
+bool CWordManipulator::legal(const std::string word) {
+    if(wordList.find(word) != wordList.end()) return true;
 
-    std::ifstream file(WORDURL);
-    if (!file.is_open()) {
-        std::cerr << "GetWord(). Error opening file: " << WORDURL << std::endl;
-        return false;
-    }
-
-    while(std::getline(file, line)) {
-        if(line == word) return true;
-    }
-
-    std::cout << "This word is not in dictionary" << std::endl;
+    std::cout << "This word is not in the dictionary" << std::endl;
     separationLine();
 
     return false;
+}
+
+size_t CWordManipulator::getRandomNumber(int max) {
+    std::random_device rd;
+    std::mt19937 gen(rd());
+    std::uniform_int_distribution<int> distribution(0, max);
+
+    return distribution(gen);
 }

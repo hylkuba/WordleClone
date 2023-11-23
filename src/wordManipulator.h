@@ -12,32 +12,32 @@
 
 #define WORDURL "src/fiveLetterWords.txt"
 
-class CWordCheck : public CUi {
+class CWordManipulator : public CUi {
 public:
     /**
-     * @brief Construct a new CWordCheck object
+     * @brief Construct a new CWordManipulator object
      * 
      */
-    CWordCheck();
+    CWordManipulator();
     
     /**
      * @brief Copy constructor, prohibited
      * 
      */
-    CWordCheck(const CWordCheck &) = delete;
+    CWordManipulator(const CWordManipulator &) = delete;
 
     /**
      * @brief Assignment operator, prohibited
      * 
-     * @return CWordCheck&
+     * @return CWordManipulator&
      */
-    CWordCheck & operator=(const CWordCheck &) = delete;
+    CWordManipulator & operator=(const CWordManipulator &) = delete;
 
     /**
-     * @brief Destroy the CWordCheck object set to default
+     * @brief Destroy the CWordManipulator object set to default
      * 
      */
-    ~CWordCheck() = default;
+    ~CWordManipulator() = default;
 
     /**
      * @brief Checking correctness of guessed word
@@ -55,6 +55,13 @@ public:
      * @return false 
      */
     bool legal(const std::string word);
+
+    /**
+     * @brief Get a random word
+     * 
+     * @return std::string 
+     */
+    std::string getWord();
 private:
     /**
      * @brief Checks whether specific character exists in a wordToGuess
@@ -68,4 +75,6 @@ private:
     bool exists(std::string wordToGuess, char c, size_t ignoreIndex);
 
     std::set<std::string> wordList;
+
+    size_t getRandomNumber(int max);
 };
