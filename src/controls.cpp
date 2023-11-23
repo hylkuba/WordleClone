@@ -10,6 +10,9 @@
     #include <windows.h>
 #endif
 
+#include <iostream>
+#include <limits>
+
 void CControls::waitForEnter() {
     while (true) {
         #ifdef _WIN32
@@ -33,5 +36,19 @@ void CControls::waitForEnter() {
 }
 
 std::string CControls::guess() {
-    
+    std::string word;
+
+    while (true) {
+        std::cin >> word;
+
+        if (word.length() == 5) {
+            break;
+        } else {
+            std::cout << "Invalid input. Please enter a 5-letter word." << std::endl;
+            std::cin.clear();
+            std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+        }
+    }
+
+    return word;
 }

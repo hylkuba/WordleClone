@@ -12,6 +12,31 @@
 class CWordGen {
 public:
     /**
+     * @brief Construct a new CWordGen object
+     * 
+     */
+    CWordGen() = default;
+    
+    /**
+     * @brief Copy constructor, prohibited
+     * 
+     */
+    CWordGen(const CWordGen &) = delete;
+
+    /**
+     * @brief Assignment operator, prohibited
+     * 
+     * @return CWordGen&
+     */
+    CWordGen & operator=(const CWordGen &) = delete;
+
+    /**
+     * @brief Destroy the CWordGen object set to default
+     * 
+     */
+    ~CWordGen() = default;
+
+    /**
      * @brief Gets a random string from a file
      * 
      * @return std::string Random word to guess

@@ -15,6 +15,7 @@ int CApplication::run() {
 
     control.waitForEnter();
 
+    // Loop of generating words
     while(true) {
         wordToFind = wordGen.getWord();
         if(wordToFind == "") {
@@ -22,9 +23,24 @@ int CApplication::run() {
             return 1;
         }
 
-        guessedWord = control.guess();
+        ui.separationLine();
+        std::cout << "Please guess a 5-letter word: " << std::endl;
 
-        std::cout << "Guessed Word: " << guessedWord << std::endl;
+        // Loop of guessing and answering
+        while(true) {
+            guessedWord = control.guess();
+            
+            if(guessedWord == wordToFind) {
+                ui.congrats();
+                break;
+            }
+
+            // Print the guessed word with appropriate colors
+            wordCheck.check(wordToFind, guessedWord);
+
+            ui.separationLine();
+        }
+
         control.waitForEnter();
     }
 

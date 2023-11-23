@@ -69,7 +69,7 @@ $(DIR_NAME)/controls.o: src/controls.cpp src/controls.h
 $(DIR_NAME)/ui.o: src/ui.cpp src/ui.h
 	$(CXX) $(CXXFLAGS) -c $< -o $@
 
-$(DIR_NAME)/wordCheck.o: src/wordCheck.cpp src/wordCheck.h
+$(DIR_NAME)/wordCheck.o: src/wordCheck.cpp src/wordCheck.h src/ui.h
 	$(CXX) $(CXXFLAGS) -c $< -o $@
 
 $(DIR_NAME)/wordGen.o: src/wordGen.cpp src/wordGen.h
