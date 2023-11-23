@@ -31,16 +31,23 @@ int CApplication::run() {
             guessedWord = control.guess();
             
             if(guessedWord == wordToFind) {
+                for (size_t i = 0; i < wordToFind.size(); i++) {
+                    ui.greenLetter(wordToFind[i]);
+                }
+                std::cout << std::endl;
+                
                 ui.congrats();
                 break;
             }
 
+            if(!wordCheck.legal(guessedWord)) continue;
             // Print the guessed word with appropriate colors
             wordCheck.check(wordToFind, guessedWord);
 
             ui.separationLine();
         }
 
+        std::cout << "Press ENTER to continue with another word!" << std::endl;
         control.waitForEnter();
     }
 

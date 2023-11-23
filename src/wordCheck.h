@@ -8,14 +8,17 @@
 #include "ui.h"
 
 #include <string>
+#include <set>
 
-class CWordCheck {
+#define WORDURL "src/fiveLetterWords.txt"
+
+class CWordCheck : public CUi {
 public:
     /**
      * @brief Construct a new CWordCheck object
      * 
      */
-    CWordCheck() = default;
+    CWordCheck();
     
     /**
      * @brief Copy constructor, prohibited
@@ -43,9 +46,16 @@ public:
      * @param guessedWord 
      */
     void check(std::string wordToGuess, std::string guessedWord);
-private:
-    CUi ui;
 
+    /**
+     * @brief Check whether the passed word is legal within txt file
+     * 
+     * @param word 
+     * @return true 
+     * @return false 
+     */
+    bool legal(const std::string word);
+private:
     /**
      * @brief Checks whether specific character exists in a wordToGuess
      * 
@@ -55,5 +65,7 @@ private:
      * @return true 
      * @return false 
      */
-    bool exists(std::string wordToGuess, char c, int ignoreIndex);
+    bool exists(std::string wordToGuess, char c, size_t ignoreIndex);
+
+    std::set<std::string> wordList;
 };

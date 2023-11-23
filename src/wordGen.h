@@ -49,9 +49,9 @@ private:
      * @brief Get the Random Number
      * 
      * @param max Max number in an interval (0, max)
-     * @return int random number
+     * @return size_t random number
      */
-    int getRandomNumber(int max);
+    size_t getRandomNumber(int max);
 
     /**
      * @brief Get the Line Count of a file

@@ -5,9 +5,11 @@
 
 #pragma once
 
+#include "ui.h"
+
 #include <string>
 
-class CControls {
+class CControls : public CUi {
 public:
     /**
      * @brief Construct a new CControls object

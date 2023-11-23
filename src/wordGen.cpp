@@ -14,7 +14,7 @@ std::string CWordGen::getWord() {
 
     if(lines == -1) return "";
 
-    int rnd = getRandomNumber(lines);
+    size_t rnd = getRandomNumber(lines);
 
     std::string word;
 
@@ -33,7 +33,7 @@ std::string CWordGen::getWord() {
     return word;
 }
 
-int CWordGen::getRandomNumber(int max) {
+size_t CWordGen::getRandomNumber(int max) {
     std::random_device rd;
     std::mt19937 gen(rd());
     std::uniform_int_distribution<int> distribution(0, max);
