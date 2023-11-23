@@ -75,6 +75,4 @@ private:
     bool exists(std::string wordToGuess, char c, size_t ignoreIndex);
 
     std::set<std::string> wordList;
-
-    size_t getRandomNumber(int max);
 };

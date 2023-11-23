@@ -68,11 +68,3 @@ bool CWordManipulator::legal(const std::string word) {
 
     return false;
 }
-
-size_t CWordManipulator::getRandomNumber(int max) {
-    std::random_device rd;
-    std::mt19937 gen(rd());
-    std::uniform_int_distribution<int> distribution(0, max);
-
-    return distribution(gen);
-}
