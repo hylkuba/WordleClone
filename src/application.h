@@ -3,6 +3,11 @@
  * @date 22.11.2023
 */
 
+#include "controls.h"
+#include "ui.h"
+#include "wordCheck.h"
+#include "wordGen.h"
+
 #include <string>
 
 class CApplication {
@@ -38,4 +43,7 @@ public:
      * @return 0 if game was successfully closed
      */
     int run();
+
+private:
+    CControls control;
 };

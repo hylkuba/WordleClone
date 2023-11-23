@@ -3,8 +3,4 @@
  * @date 22.11.2023
 */
 
-#include "application.h"
-
-int CApplication::run() {
-
-}
+#include "ui.h"
