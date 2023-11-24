@@ -54,6 +54,15 @@ $(DIR_NAME)/%.o: src/%.cpp $(HEADERS)
 all: doc run clean
 
 #-----------------------------------------------------------------------
+l:
+	cat Makefile src/*.h src/*.cpp | wc -l
+
+la:
+	cat Makefile src/* | wc -l
+
+ltxt:
+	cat src/fiveLetterWords.txt | wc -l
+#-----------------------------------------------------------------------
 # Object files dependencies
 $(DIR_NAME)/main.o: src/main.cpp src/application.h src/ui.h \
  src/controls.h src/wordManipulator.h
