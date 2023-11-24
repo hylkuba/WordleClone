@@ -74,5 +74,9 @@ private:
      */
     bool exists(std::string wordToGuess, char c, size_t ignoreIndex);
 
+    /**
+     * @brief Set of all possible words from a txt file
+     * 
+     */
     std::set<std::string> wordList;
 };

@@ -25,30 +25,37 @@ int CApplication::run() {
 
         ui.separationLine();
         std::cout << "Please guess a 5-letter word: " << std::endl;
+        std::cout << "For help, write \"11111\"" << std::endl;
 
         // Loop of guessing and answering
         while(true) {
             guessedWord = control.guess();
-            
+
+            // If user asks for help => Help him
+            if(guessedWord == "11111") {
+
+                continue;
+            }
+            wordHistory.push_back(guessedWord);
+
+            if(!wordManipulator.legal(guessedWord)) continue;
+
+            // Print all guessed words again
+            system("clear");
+            for (const std::string& word : wordHistory) {
+                wordManipulator.check(wordToFind, word);
+            }
+
             if(guessedWord == wordToFind) {
-                for (size_t i = 0; i < wordToFind.size(); i++) {
-                    ui.greenLetter(wordToFind[i]);
-                }
-                std::cout << std::endl;
-                
                 ui.congrats();
                 break;
             }
-
-            if(!wordManipulator.legal(guessedWord)) continue;
-            // Print the guessed word with appropriate colors
-            wordManipulator.check(wordToFind, guessedWord);
-
-            ui.separationLine();
         }
+        wordHistory.clear();
 
         std::cout << "Press ENTER to continue with another word!" << std::endl;
         control.waitForEnter();
+        system("clear");
     }
 
     return 0;

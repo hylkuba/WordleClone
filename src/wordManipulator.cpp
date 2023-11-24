@@ -25,8 +25,6 @@ CWordManipulator::CWordManipulator() {
 
         wordList.insert(word);
     }
-
-    std::cout << "size: " << wordList.size();
 }
 
 void CWordManipulator::check(std::string wordToGuess, std::string guessedWord) {

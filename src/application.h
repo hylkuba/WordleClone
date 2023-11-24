@@ -8,6 +8,7 @@
 #include "wordManipulator.h"
 
 #include <string>
+#include <vector>
 
 class CApplication {
 public:
@@ -50,4 +51,6 @@ private:
 
     std::string wordToFind;
     std::string guessedWord;
+
+    std::vector<std::string> wordHistory;
 };
