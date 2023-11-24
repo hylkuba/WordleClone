@@ -62,6 +62,18 @@ public:
      * @return std::string 
      */
     std::string getWord();
+
+    /**
+     * @brief Clears all maps
+     * 
+     */
+    void reset();
+
+    /**
+     * @brief Prints possible word combinations based on received input
+     * 
+     */
+    void help();
 private:
     /**
      * @brief Checks whether specific character exists in a wordToGuess
@@ -79,4 +91,22 @@ private:
      * 
      */
     std::set<std::string> wordList;
+
+    /**
+     * @brief Set that contains information of valid characters
+     * 
+     */
+    std::set<std::pair<char, int>> letterCorrectPos;
+
+    /**
+     * @brief Set that contains information of valid characters on different positions
+     * 
+     */
+    std::set<std::pair<char, int>> letterWrongPos;
+
+    /**
+     * @brief Set that contains invalid characters
+     * 
+     */
+    std::set<char> letterNotPos;
 };

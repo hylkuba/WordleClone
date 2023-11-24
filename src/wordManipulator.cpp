@@ -31,10 +31,13 @@ void CWordManipulator::check(std::string wordToGuess, std::string guessedWord) {
     for (size_t i = 0; i < guessedWord.size(); i++) {
         if(guessedWord[i] == wordToGuess[i]) {
             greenLetter(guessedWord[i]);
+            letterCorrectPos.insert(std::make_pair(guessedWord[i], i));
         } else if(exists(wordToGuess, guessedWord[i], i)) {
             yellowLetter(guessedWord[i]);
+            letterWrongPos.insert(std::make_pair(guessedWord[i], i));
         } else {
             grayLetter(guessedWord[i]);
+            letterNotPos.insert(guessedWord[i]);
         }
     }
     std::cout << std::endl;
@@ -65,4 +68,14 @@ bool CWordManipulator::legal(const std::string word) {
     separationLine();
 
     return false;
+}
+
+void CWordManipulator::reset() {
+    letterCorrectPos.clear();
+    letterWrongPos.clear();
+    letterNotPos.clear();
+}
+
+void CWordManipulator::help() {
+    
 }

@@ -17,6 +17,7 @@ int CApplication::run() {
 
     // Loop of generating words
     while(true) {
+        system("clear");
         wordToFind = wordManipulator.getWord();
         if(wordToFind == "") {
             std::cout << "Trouble generating word right now. Fix needed!" << std::endl;
@@ -27,18 +28,27 @@ int CApplication::run() {
         std::cout << "Please guess a 5-letter word: " << std::endl;
         std::cout << "For help, write \"11111\"" << std::endl;
 
+
+        int tries = 0;
         // Loop of guessing and answering
         while(true) {
             guessedWord = control.guess();
 
             // If user asks for help => Help him
             if(guessedWord == "11111") {
-
+                if(tries < 3) {
+                    std::cout << "Not eligable for help yet.\nYou need " << (3 - tries) << " more guesses" << std::endl;
+                    continue;
+                }
+                wordManipulator.help();
                 continue;
             }
-            wordHistory.push_back(guessedWord);
 
             if(!wordManipulator.legal(guessedWord)) continue;
+            
+            wordHistory.push_back(guessedWord);
+
+            tries++;
 
             // Print all guessed words again
             system("clear");
@@ -48,6 +58,8 @@ int CApplication::run() {
 
             if(guessedWord == wordToFind) {
                 ui.congrats();
+
+                wordManipulator.reset();
                 break;
             }
         }
@@ -55,7 +67,6 @@ int CApplication::run() {
 
         std::cout << "Press ENTER to continue with another word!" << std::endl;
         control.waitForEnter();
-        system("clear");
     }
 
     return 0;
