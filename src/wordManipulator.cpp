@@ -25,6 +25,8 @@ CWordManipulator::CWordManipulator() {
 
         wordList.insert(word);
     }
+
+    correctWord = "_____";
 }
 
 void CWordManipulator::check(std::string wordToGuess, std::string guessedWord) {
@@ -32,6 +34,7 @@ void CWordManipulator::check(std::string wordToGuess, std::string guessedWord) {
         if(guessedWord[i] == wordToGuess[i]) {
             greenLetter(guessedWord[i]);
             letterCorrectPos.insert(std::make_pair(guessedWord[i], i));
+            correctWord[i] = guessedWord[i];
         } else if(exists(wordToGuess, guessedWord[i], i)) {
             yellowLetter(guessedWord[i]);
             letterWrongPos.insert(std::make_pair(guessedWord[i], i));
@@ -74,8 +77,70 @@ void CWordManipulator::reset() {
     letterCorrectPos.clear();
     letterWrongPos.clear();
     letterNotPos.clear();
+    possibleWords.clear();
+    correctWord = "_____";
 }
 
 void CWordManipulator::help() {
-    
+    // Outer loop of words
+    possibleWords.clear();
+    for (const std::string& word : wordList) {
+        bool possible = true;
+
+        // Inner loop of characters
+        for (size_t i = 0; i < word.size(); i++)
+        {
+            // If we know that letter on specific position is green
+            if(correctWord[i] != '_') {
+                if(word[i] != correctWord[i]) {
+                    possible = false;
+                    break;
+                }
+            }
+            
+            // Check if the letter of the word is already out of options
+            if(letterNotPos.find(word[i]) != letterNotPos.end()) {
+                possible = false;
+                break;
+            }
+
+            if(letterWrongPos.find(std::make_pair(word[i], i)) != letterWrongPos.end()) {
+                possible = false;
+                break;
+            }
+        }
+
+        // Check if all yellow letters are in current word
+        if(possible) {
+            possible = allCharsPresent(word);
+        }
+
+        if(possible) {
+            possibleWords.insert(word);
+        }
+    }
+
+    system("clear");
+    std::cout << "Possible options" << std::endl;
+    for(const std::string& word : possibleWords) {
+        for (size_t i = 0; i < correctWord.size(); i++)
+        {
+            if(word[i] == correctWord[i]) {
+                greenLetter(word[i]);
+            } else {
+                grayLetter(word[i]);
+            }
+        }
+        std::cout << std::endl;
+    }
+}
+
+bool CWordManipulator::allCharsPresent(const std::string& str) {
+    for (const auto& pair : letterWrongPos) {
+        char character = pair.first;
+        if (str.find(character) == std::string::npos) {
+            return false;
+        }
+    }
+    return true;
 }

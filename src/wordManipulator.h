@@ -87,6 +87,15 @@ private:
     bool exists(std::string wordToGuess, char c, size_t ignoreIndex);
 
     /**
+     * @brief Checks if all yellow characters are present in a word
+     * 
+     * @param str 
+     * @return true 
+     * @return false 
+     */
+    bool allCharsPresent(const std::string& str);
+
+    /**
      * @brief Set of all possible words from a txt file
      * 
      */
@@ -99,6 +108,12 @@ private:
     std::set<std::pair<char, int>> letterCorrectPos;
 
     /**
+     * @brief Correct word gotten from green letters represented by __a__
+     * 
+     */
+    std::string correctWord;
+
+    /**
      * @brief Set that contains information of valid characters on different positions
      * 
      */
@@ -109,4 +124,10 @@ private:
      * 
      */
     std::set<char> letterNotPos;
+
+    /**
+     * @brief Set of possible words
+     * 
+     */
+    std::set<std::string> possibleWords;
 };
