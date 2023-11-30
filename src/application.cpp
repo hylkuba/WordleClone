@@ -26,7 +26,7 @@ int CApplication::run() {
 
         ui.separationLine();
         std::cout << "Please guess a 5-letter word: " << std::endl;
-        std::cout << "For help, write \"11111\"" << std::endl;
+        std::cout << "For help, write \"*****\"" << std::endl;
 
 
         int tries = 0;
@@ -35,7 +35,7 @@ int CApplication::run() {
             guessedWord = control.guess();
 
             // If user asks for help => Help him
-            if(guessedWord == "11111") {
+            if(guessedWord == "*****") {
                 if(tries < 3) {
                     std::cout << "Not eligable for help yet.\nYou need " << (3 - tries) << " more guesses" << std::endl;
                     continue;
